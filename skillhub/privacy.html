@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SkillHub 隐私政策</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      max-width: 720px;
+      margin: 40px auto;
+      padding: 0 20px;
+      line-height: 1.8;
+      color: #1E1B4B;
+      background: #F8F7FF;
+    }
+    h1 { font-size: 24px; margin-bottom: 8px; }
+    h2 { font-size: 18px; margin-top: 28px; color: #7C3AED; }
+    p, li { font-size: 15px; color: #4C4A6B; }
+    .date { color: #A19EB8; font-size: 13px; }
+  </style>
+</head>
+<body>
+  <h1>SkillHub 隐私政策</h1>
+  <p class="date">最后更新：2026 年 6 月 12 日</p>
+
+  <h2>数据收集</h2>
+  <p>SkillHub 是一个纯客户端 Chrome 扩展，<strong>不收集、不存储、不上传任何个人数据</strong>到我们的服务器。我们没有后端服务器。</p>
+
+  <h2>本地存储的数据</h2>
+  <p>以下数据<strong>仅存储在您的浏览器本地</strong>，不会传输到任何第三方：</p>
+  <ul>
+    <li><strong>收藏的 Skill</strong>：您收藏的 Skill ID 列表，存储在 Chrome Storage 中，用于同步到同一 Google 账号的其他设备</li>
+    <li><strong>Skill 目录数据</strong>：从公开数据源（GitHub、skills.sh）获取的 Skill 元数据，缓存在 IndexedDB 中</li>
+  </ul>
+
+  <h2>第三方服务</h2>
+  <p>SkillHub 使用以下第三方服务，请注意它们的隐私政策：</p>
+  <ul>
+    <li><strong>ExtensionPay</strong>：处理 Pro 付费。支付信息由 ExtensionPay 直接处理，我们无法访问您的支付详情。详见 <a href="https://extensionpay.com/privacy">ExtensionPay 隐私政策</a></li>
+    <li><strong>GitHub API</strong>：获取 Skill 仓库的元数据（star 数、描述等）。不会发送任何用户数据</li>
+  </ul>
+
+  <h2>权限说明</h2>
+  <ul>
+    <li><strong>storage</strong>：存储收藏列表和 Skill 数据缓存</li>
+    <li><strong>alarms</strong>：定时更新 Skill 数据</li>
+    <li><strong>activeTab</strong>：在 GitHub 页面右键一键安装 Skill</li>
+    <li><strong>scripting</strong>：在 GitHub 页面注入安装脚本</li>
+    <li><strong>downloads</strong>：导出收藏数据</li>
+    <li><strong>notifications</strong>：数据更新通知</li>
+    <li><strong>contextMenus</strong>：右键菜单快捷操作</li>
+  </ul>
+
+  <h2>数据删除</h2>
+  <p>您可以随时在扩展设置中导出或清除数据。卸载扩展将自动清除所有本地数据。如需删除 ExtensionPay 账号数据，请联系 ExtensionPay 支持。</p>
+
+  <h2>联系我们</h2>
+  <p>如有隐私相关问题，请联系：<a href="mailto:support@skillhub.dev">support@skillhub.dev</a></p>
+</body>
+</html>

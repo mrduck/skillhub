@@ -1,0 +1,62 @@
+{
+  "manifest_version": 3,
+  "name": "SkillHub",
+  "version": "1.0.1",
+  "description": "发现、收藏、一键安装 AI 编程 Skills",
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "action": {
+    "default_popup": "popup/popup.html",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "background": {
+    "service_worker": "background/background.js",
+    "type": "module"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://extensionpay.com/*"
+      ],
+      "js": [
+        "vendor/extpay.js"
+      ],
+      "run_at": "document_start"
+    },
+    {
+      "matches": [
+        "*://*.github.com/*",
+        "*://raw.githubusercontent.com/*"
+      ],
+      "js": [
+        "content/content.js"
+      ],
+      "run_at": "document_idle"
+    }
+  ],
+  "permissions": [
+    "alarms",
+    "contextMenus",
+    "downloads",
+    "notifications",
+    "activeTab",
+    "scripting",
+    "storage"
+  ],
+  "host_permissions": [
+    "*://*.github.com/*",
+    "*://raw.githubusercontent.com/*",
+    "*://api.skills.sh/*",
+    "https://extensionpay.com/*"
+  ],
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'none'; style-src 'self' 'unsafe-inline'; img-src * data:; connect-src 'self' https://extensionpay.com https://raw.githubusercontent.com https://api.skills.sh;"
+  }
+}
