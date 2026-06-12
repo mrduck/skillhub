@@ -1,0 +1,52 @@
+name: Update Skills Data
+
+on:
+  schedule:
+    # 每天 UTC 00:00 运行（北京时间早上 8:00）
+    - cron: '0 0 * * *'
+  workflow_dispatch:
+    # 允许手动触发
+  push:
+    paths:
+      - 'update_skills.py'
+      - '.github/workflows/update-skills.yml'
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write  # 允许推送提交
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Run update script
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python3 update_skills.py
+
+      - name: Check for changes
+        id: check
+        run: |
+          if git diff --quiet skillhub/data/skills.json; then
+            echo "changed=false" >> $GITHUB_OUTPUT
+            echo "No changes detected."
+          else
+            echo "changed=true" >> $GITHUB_OUTPUT
+            echo "Changes detected!"
+          fi
+
+      - name: Commit and push
+        if: steps.check.outputs.changed == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add skillhub/data/skills.json
+          git commit -m "chore: auto-update skills data [skip ci]"
+          git push
